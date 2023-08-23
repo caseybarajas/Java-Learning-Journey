@@ -1,0 +1,38 @@
+# Java Learning Journey 🚀
+
+Welcome to my Java Learning Journey! This repository contains all my in-class notes and homework assignments as I embark on the exciting path of learning Java.
+
+![Java Logo](https://logo.clearbit.com/oracle.com) 
+
+## Setup and Run 🛠️
+
+1. Ensure you have Java installed:
+   ```bash
+   java -version
+
+2. Clone the repository:
+
+  bash
+
+    git clone https://github.com/YourUsername/java-learning-journey.git
+
+3. Navigate to the directory:
+
+  bash
+
+    cd java-learning-journey
+
+4. Compile and run a Java file (e.g., Basics.java):
+
+  bash
+
+    javac Basics.java
+    java Basics
+
+Contributing 🤝
+
+While this repository is primarily for my personal learning, any suggestions, feedback, or corrections are welcome! Feel free to open an issue or create a pull request.
+
+This project is open-source and available under the MIT License.
+
+Made with ❤️ by Casey Barajas
