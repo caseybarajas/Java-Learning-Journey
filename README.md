@@ -14,7 +14,7 @@ Welcome to my Java Learning Journey! This repository contains all my in-class no
 
   bash
 
-    git clone https://github.com/YourUsername/java-learning-journey.git
+    git clone https://github.com/Laughable33/Java-Course.git
 
 3. Navigate to the directory:
 
