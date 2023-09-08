@@ -12,22 +12,22 @@ Welcome to my Java Learning Journey! This repository contains all my in-class no
 
 2. Clone the repository:
 
-  bash
+     bash
 
-    git clone https://github.com/Laughable33/Java-Course.git
+       git clone https://github.com/Laughable33/Java-Course.git
 
 3. Navigate to the directory:
 
-  bash
+     bash
 
-    cd java-learning-journey
+       cd java-learning-journey
 
 4. Compile and run a Java file (e.g., Basics.java):
 
-  bash
+     bash
 
-    javac Basics.java
-    java Basics
+       javac Basics.java
+       java Basics
 
 Contributing 🤝
 
