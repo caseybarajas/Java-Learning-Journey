@@ -20,7 +20,7 @@ Welcome to my Java Learning Journey! This repository contains all my in-class no
 
      bash
 
-       cd java-learning-journey
+       cd Java-Course
 
 4. Compile and run a Java file (e.g., Basics.java):
 
