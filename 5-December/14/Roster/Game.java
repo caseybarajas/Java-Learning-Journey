@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private String[] fictionalTeams = {"Cobras", "Dragons", "Eagles", "Hawks"};
+    private String[] fictionalTeams = {"The Roid Ragers", "The Laser Lords", "The Thunderbolts", "The Steel Titans", "The Shadow Strikers", "The Laser Lords", "The Laser Beams", "The Laser Sharks", "The Laser Dragons", "The Laser Wolves", "The Laser Tigers", "The Laser Lions", "The Laser Bears", "The Laser Eagles", "The Laser Falcons", "The Laser Hawks", "The Laser Owls", "The Laser Ravens", "The Laser Vultures", "The Laser Scorpions", "The Laser Spiders", "The Laser Snakes", "The Laser Wolves", "The Laser Sharks", "The Laser Dragons", "The Laser Tigers", "The Laser Lions", "The Laser Bears", "The Laser Eagles", "The Laser Falcons", "The Laser Hawks", "The Laser Owls", "The Laser Ravens", "The Laser Vultures", "The Laser Scorpions", "The Laser Spiders", "The Laser Snakes", "The Laser Wolves", "The Laser Sharks", "The Laser Dragons", "The Laser Tigers", "The Laser Lions", "The Laser Bears", "The Laser Eagles", "The Laser Falcons", "The Laser Hawks", "The Laser Owls", "The Laser Ravens", "The Laser Vultures", "The Laser Scorpions", "The Laser Spiders", "The Laser Snakes"};
     private Random random = new Random();
 
     // Method to start and play a match
@@ -35,6 +35,7 @@ public class Game {
     
         if (result.equals("won")) {
             userTeam.incrementWins();
+            userTeam.addMoney(100); // Add 100 money for a win
         } else {
             userTeam.incrementLosses();
         }
@@ -66,7 +67,48 @@ public class Game {
             " managed to disarm an opponent.\n",
             " made a tactical retreat.\n",
             " held the line against an opponent's charge.\n",
-            " cried \n"
+            " cried \n",
+            " knocked a kid over \n",
+            " got hit by a car \n",
+            " did a flip \n",
+            " pulled out their sidearm \n",
+            " got shot in the chest \n",
+            " got shot in the head \n",
+            " got shot in the leg \n",
+            " got shot in the arm \n",
+            " got shot in the foot \n",
+            " got shot in the hand \n",
+            " got shot in the shoulder \n",
+            " got shot in the stomach \n",
+            " got shot in the back \n",
+            " got shot in the neck \n",
+            " accidentally tripped over their own feet.\n",
+            " got tangled in their own shoelaces.\n",
+            " started breakdancing instead of fighting.\n",
+            " challenged the opponent to a dance-off.\n",
+            " started singing karaoke during the match.\n",
+            " got distracted by a butterfly.\n",
+            " tried to use a banana as a weapon.\n",
+            " mistook a teammate for an opponent and attacked them.\n",
+            " started a conga line with the opponents.\n",
+            " brought a rubber chicken to the match.\n",
+            " started juggling instead of playing.\n",
+            " accidentally threw their weapon in the wrong direction.\n",
+            " got their shoelaces tied together by an opponent.\n",
+            " started doing yoga poses in the middle of the match.\n",
+            " tried to negotiate a truce with the opponents.\n",
+            " got distracted by their own reflection.\n",
+            " started playing air guitar instead of fighting.\n",
+            " mistook a referee for an opponent and attacked them.\n",
+            " brought a water gun and short circuted an opponent. \n",
+            " started doing magic tricks instead of playing.\n",
+            " accidentally hit themselves with their own weapon.\n",
+            " got their pants pulled down by an opponent.\n",
+            " started playing rock-paper-scissors with the opponents.\n",
+            " mistook a spectator for an opponent and attacked them.\n",
+            " brought a rubber duck to the match.\n",
+            " started doing cartwheels instead of fighting.\n",
+            " accidentally threw a pie at their own teammate.\n"
         };
 
         for (int i = 0; i < 15; i++) {

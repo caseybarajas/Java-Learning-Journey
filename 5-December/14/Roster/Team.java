@@ -39,17 +39,35 @@ public class Team {
         "Daisy", "Diego", "Lyla", "Leonardo", "Makayla", "Cayden", "Molly", "Waylon", "Reagan",
         "Roman", "Kylee", "Josiah", "Amaya", "Jesus", "Jocelyn", "Leon", "Eden", "Damian", "Andrea",
         "Ezekiel", "Valeria", "Braxton", "Arianna", "Camden", "Emilia", "Giovanni", "Piper", "Bryce",
-        "Lil Mel"
+        "Lil Mel", "Jayce", "Adalynn", "Bryson", "Mary", "Angel", "Margaret", "Roman", "Annabelle",
+        "Evan", "Athena", "Maverick", "Arya", "Bryan", "Gabriela", "Adam", "Vanessa", "Santiago",
+        "Aliyah", "Jordan", "Adalyn", "Riley", "Jordan", "Dylan", "Brinley", "Everett", "Carly",
+        "Xander", "Kayla", "Ian", "Paige", "Jesus", "Summer", "Sean", "Mila", "Oscar", "Sienna",
+        "Cody", "Leila", "Kenneth", "Destiny", "Jaden", "Alaina", "Joel", "Alana", "Colin", "Reese",
+        "Leon", "Elise", "Felix", "Finley", "Kaleb", "Brooke", "Kyle", "Lila", "Kaden", "Diana",
+        "Preston", "Juliana", "Bennett", "Amy", "Jayce", "Daniela", "Weston", "Valerie", "Patrick",
+        "Adriana", "Steven", "Jordyn", "Lorenzo", "Catherine", "Marcus", "Lydia", "Edward", "Eliza",
+        "Aidan", "Danielle", "Jesse", "Sierra", "Jeremy", "Adrianna", "Braylen", "Bianca", "Roman",
+        "Alivia", "Mark", "Kate", "Caden", "Payton", "Everett", "Mckenzie", "Jorge", "Parker"
     };
     private String teamName;
     private List<Player> players;
     private int wins;
     private int losses;
+    private int money;
+    private List<String> coaches;
+    private String facilities;
+    private boolean trainingStatus;
+    private boolean sponsorshipStatus;
 
     // Constructor
     public Team(String teamName, List<Player> startingPlayers) {
         this.teamName = teamName;
         this.players = new ArrayList<>(startingPlayers);
+        this.coaches = new ArrayList<>();
+        this.facilities = "Basic";
+        this.trainingStatus = false;
+        this.sponsorshipStatus = false;
     }
 
     // Method to add a player to the team
@@ -57,10 +75,10 @@ public class Team {
         players.add(player);
     }
 
-    // Method to remove a player from the team
     public void removePlayer(String tagId) {
         players.removeIf(player -> player.getTagId().equals(tagId));
     }
+
 
     // Method to get a player by tag ID
     public Player getPlayer(String tagId) {
@@ -93,6 +111,31 @@ public class Team {
             System.out.println("Player with tag ID " + oldTagId + " not found.");
         }
     }
+
+    // Method to check facalties
+    public void checkFacilities() {
+        System.out.println("Facilities: " + facilities);
+    }
+
+    // Method to checktraining status
+    public void checkTrainingStatus() {
+        if (trainingStatus == true) {
+            System.out.println("Training Status: Training in progress");
+        } else {
+            System.out.println("Training Status: No training in progress");
+        }
+    }
+    
+    // Method to check sponsorship status
+    public boolean getSponsorshipStatus() {
+        if (sponsorshipStatus == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
 
     private boolean isTagIdExists(String tagId) {
         return players.stream().anyMatch(player -> player.getTagId().equals(tagId));
@@ -158,5 +201,38 @@ public class Team {
         return this.losses;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public void addMoney(int amount) {
+        this.money += amount;
+    }
+
+    public void subtractMoney(int amount) {
+        this.money -= amount;
+    }
+
+    public void hireCoach(String coach) {
+        this.coaches.add(coach);
+    }
+
+    private String sponsor; // Add a sponsor field to the Team class
+
+    public void upgradeFacilities(String facilities) {
+        this.facilities = facilities;
+    }
+
+    public void conductTrainingSession() {
+        this.trainingStatus = true;
+    }
+
+    public void getSponsorship(String sponsor) {
+        this.sponsor = sponsor;
+        this.sponsorshipStatus = true;
+    }
 }
+
+
+
 

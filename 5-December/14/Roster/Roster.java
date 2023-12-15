@@ -59,11 +59,30 @@ public class Roster {
                     case 6:
                         viewStats(team);
                         break;
-                    case 7:
-                        exit = true;
+                        case 7:
+                        buyEquipment(team, scanner);
                         break;
+                    case 8:
+                        hireCoaches(team, scanner);
+                        break;
+                    case 9:
+                        upgradeFacilities(team, scanner);
+                        break;
+                    case 10:
+                        healInjuredPlayers(team, scanner);
+                        break;
+                    case 11:
+                        conductTrainingSessions(team, scanner);
+                        break;
+                    case 12:
+                        getSponsorships(team, scanner);
+                        break;
+                    case 13:
+                        System.out.println("Exiting the program...");
+                        System.exit(0);
                     default:
-                        System.out.println("\nInvalid choice. Please try again.");
+                        System.out.println("Invalid choice.");
+                        break;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("\nInvalid input. Please enter a number.");
@@ -93,13 +112,19 @@ public class Roster {
 
     private static void displayMenuOptions() {
         System.out.println("\nMenu Options:");
-        System.out.println("1. Add Player");
-        System.out.println("2. Edit Player Information");
-        System.out.println("3. Display Player Information");
-        System.out.println("4. Display Team Information");
-        System.out.println("5. Play a Match");
-        System.out.println("6. View Stats"); // New option
-        System.out.println("7. Exit");
+        System.out.println("1.   Add Player");
+        System.out.println("2.   Edit Player Information");
+        System.out.println("3.   Display Player Information");
+        System.out.println("4.   Display Team Information");
+        System.out.println("5.   Play a Match");
+        System.out.println("6.   View Stats");
+        System.out.println("7.   Buy Equipment");
+        System.out.println("8.   Hire Coaches");
+        System.out.println("9.   Upgrade Facilities");
+        System.out.println("10.  Heal Injured Players");
+        System.out.println("11.  Conduct Training Sessions");
+        System.out.println("12.  Get Sponsorships");
+        System.out.println("13.  Exit");
         System.out.print("\nEnter your choice: ");
     }
 
@@ -129,8 +154,13 @@ public class Roster {
         String type = scanner.nextLine();
 
         Player newPlayer = new Player(name, tagId, accuracyRate, type);
-        team.addPlayer(newPlayer);
-        System.out.println("Player added successfully.");
+        if (team.getMoney() >= 50) { // Check if the team has enough money
+            team.subtractMoney(50); // Subtract 50 money for adding a player
+            team.addPlayer(newPlayer);
+            System.out.println("Player added successfully.");
+        } else {
+            System.out.println("Not enough money to add a player.");
+        }
     }
 
 
@@ -152,6 +182,7 @@ public class Roster {
         System.out.println("2. Edit Tag ID");
         System.out.println("3. Edit Accuracy Rate");
         System.out.println("4. Edit Type");
+        System.out.println("5. Use Steroids");
         System.out.print("Choose the attribute to edit: ");
 
         int choice = scanner.nextInt();
@@ -172,12 +203,27 @@ public class Roster {
                 System.out.print("Enter new accuracy rate (0.0 - 1.0): ");
                 double newAccuracyRate = scanner.nextDouble();
                 scanner.nextLine();  // Consume the leftover newline
-                team.editPlayerAccuracyRate(tagId, newAccuracyRate);
+                if (team.getMoney() >= 10) { // Check if the team has enough money
+                    team.subtractMoney(10); // Subtract 10 money for changing accuracy
+                    team.editPlayerAccuracyRate(tagId, newAccuracyRate);
+                } else {
+                    System.out.println("Not enough money to change accuracy rate.");
+                }
                 break;
             case 4:
                 System.out.print("Enter new type: (Sniper, Tank, Scout, Medic, Engineer)");
                 String newType = scanner.nextLine();
                 team.editPlayerType(tagId, newType);
+                break;
+            case 5:
+                if (team.getMoney() >= 20) { // Check if the team has enough money
+                    team.subtractMoney(20); // Subtract 20 money for using steroids
+                    player.setAccuracyRate(1.0);
+                    System.out.println("Player's accuracy rate has been set to 1.0.");
+                } 
+                else {
+                    System.out.println("Not enough money to use steroids.");
+                }
                 break;
             default:
                 System.out.println("Invalid choice.");
@@ -201,6 +247,88 @@ public class Roster {
     private static void viewStats(Team team) {
         System.out.println("Wins: " + team.getWins());
         System.out.println("Losses: " + team.getLosses());
+        System.out.println("Money: " + team.getMoney());
+    }
+
+    private static void buyEquipment(Team team, Scanner scanner) {
+        System.out.println("Enter player's tag ID:");
+        String tagId = scanner.nextLine();
+        Player player = team.getPlayer(tagId);
+        if (player != null) {
+            System.out.println("Enter type of equipment to buy:");
+            String equipment = scanner.nextLine();
+            if (team.getMoney() >= 250) {  // Assuming EQUIPMENT_COST is a constant
+                team.subtractMoney(250);
+                player.addEquipment(equipment);
+                System.out.println("Bought " + equipment + " for player " + tagId);
+            } else {
+                System.out.println("Not enough money to buy equipment.");
+            }
+        } else {
+            System.out.println("Player not found.");
+        }
+    }
+
+    private static void hireCoaches(Team team, Scanner scanner) {
+        if (team.getMoney() >= 500) {  // Assuming COACH_COST is a constant
+            System.out.println("Enter coach's name:");
+            String coach = scanner.nextLine();
+            team.subtractMoney(500);
+            team.hireCoach(coach);
+            System.out.println("Hired coach " + coach);
+        } else {
+            System.out.println("Not enough money to hire a coach.");
+        }
+    }
+
+    private static void upgradeFacilities(Team team, Scanner scanner) {
+        if (team.getMoney() >= 750) {  // Assuming FACILITIES_UPGRADE_COST is a constant
+            System.out.println("Enter new facilities level:");
+            String facilities = scanner.nextLine();
+            team.subtractMoney(750);
+            team.upgradeFacilities(facilities);
+            System.out.println("Upgraded facilities to " + facilities);
+        } else {
+            System.out.println("Not enough money to upgrade facilities.");
+        }
+    }
+
+    private static void healInjuredPlayers(Team team, Scanner scanner) {
+        System.out.println("Enter player's tag ID:");
+        String tagId = scanner.nextLine();
+        Player player = team.getPlayer(tagId);
+        if (player != null) {
+            if (team.getMoney() >= 250) {  // Assuming HEALING_COST is a constant
+                team.subtractMoney(250);
+                player.heal();
+                System.out.println("Healed player " + tagId);
+            } else {
+                System.out.println("Not enough money to heal player.");
+            }
+        } else {
+            System.out.println("Player not found.");
+        }
+    }
+
+    private static void conductTrainingSessions(Team team, Scanner scanner) {
+        if (team.getMoney() >= 150) {  // Assuming TRAINING_COST is a constant
+            team.subtractMoney(150);
+            team.conductTrainingSession();
+            System.out.println("Conducted training session.");
+        } else {
+            System.out.println("Not enough money to conduct training session.");
+        }
+    }
+
+    private static void getSponsorships(Team team, Scanner scanner) {
+        if (!team.getSponsorshipStatus()) {
+            System.out.println("Enter sponsor's name:");
+            String sponsor = scanner.nextLine();
+            team.getSponsorship(sponsor);  // Pass the sponsor's name to the getSponsorship method
+            System.out.println("Got sponsorship from " + sponsor);
+        } else {
+            System.out.println("Already have a sponsorship.");
+        }
     }
 
 }

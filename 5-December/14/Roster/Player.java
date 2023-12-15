@@ -4,11 +4,16 @@
 * This class represents a player in the game with properties such as name, tag ID, accuracy rate, and type. It also includes methods to get and set these properties.
 */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private String name;
     private String tagId;
     private double accuracyRate;
     private String type;
+    private List<String> equipment;
+    private int healthStatus;
 
     // Constructor
     public Player(String name, String tagId, double accuracyRate, String type) {
@@ -16,6 +21,8 @@ public class Player {
         this.tagId = tagId;
         this.accuracyRate = accuracyRate;
         this.type = type;
+        this.equipment = new ArrayList<>();
+        this.healthStatus = 100;  // Assuming health status is a percentage
     }
 
     // Getters and Setters
@@ -39,16 +46,24 @@ public class Player {
         return accuracyRate;
     }
 
-    public void setAccuracyRate(double accuracyRate) {
-        this.accuracyRate = accuracyRate;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setAccuracyRate(double accuracyRate) {
+        this.accuracyRate = accuracyRate;
+    }
+
+    public void addEquipment(String equipment) {
+        this.equipment.add(equipment);
+    }
+
+    public void heal() {
+        this.healthStatus = 100;
     }
 
     @Override
