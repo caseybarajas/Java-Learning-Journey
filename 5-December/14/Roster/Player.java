@@ -1,13 +1,21 @@
+/*
+* Casey Barajas
+* Player.java
+* This class represents a player in the game with properties such as name, tag ID, accuracy rate, and type. It also includes methods to get and set these properties.
+*/
+
 public class Player {
     private String name;
     private String tagId;
     private double accuracyRate;
+    private String type;
 
     // Constructor
-    public Player(String name, String tagId, double accuracyRate) {
+    public Player(String name, String tagId, double accuracyRate, String type) {
         this.name = name;
         this.tagId = tagId;
         this.accuracyRate = accuracyRate;
+        this.type = type;
     }
 
     // Getters and Setters
@@ -35,10 +43,17 @@ public class Player {
         this.accuracyRate = accuracyRate;
     }
 
-    // toString method for displaying player information
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return String.format("Name: %-15s | Tag ID: %-10s | Accuracy Rate: %.2f%%",
-                             name, tagId, accuracyRate * 100);
-    }    
+        return String.format("Name: %-10s | Tag ID: %-6s | Accuracy: %-7.2f%% | Type: %-10s",
+                             name, tagId, accuracyRate * 100, type);
+    }
 }
