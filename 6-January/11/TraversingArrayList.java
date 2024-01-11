@@ -38,7 +38,21 @@ import java.util.ArrayList;
 
         System.out.println(); //spacing
 
-        while()
+        String dough = "bostom creme";
+
+        int counter = 0;
+        while(counter < doughnutz.size())
+        {
+            if(doughnutz.get(counter).equals(dough))
+            {
+                System.out.println(dough + " is at " + counter);
+            }
+            else
+            {
+                System.out.println(dough + " is not at " + counter);
+            }
+            counter++;
+        }
 
     }
  }
