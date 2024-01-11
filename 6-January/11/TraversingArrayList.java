@@ -54,5 +54,31 @@ import java.util.ArrayList;
             counter++;
         }
 
+        System.out.println(); //spacing
+
+        System.out.println("cake is at: " + doughnutz.indexOf("cake"));
+
+        System.out.println(); //spacing
+
+        for(String s : doughnutz)
+        {
+            if(s.contains("e") && s.contains("g"))
+            {
+                System.out.println(s + " has an e and g");
+            }
+        }
+        System.out.println(); //spacing
+
+        for(int j = 0; j < doughnutz.size(); j++)
+        {
+            if(doughnutz.get(j).equals("powdered"))
+            {
+                System.out.println(doughnutz.remove(j) + " is the worst");
+            }
+        }
+        System.out.println(); //spacing
+
+        System.out.println(doughnutz);
+
     }
  }
