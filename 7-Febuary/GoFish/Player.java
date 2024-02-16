@@ -1,3 +1,15 @@
+/*
+ * The Player class represents a player in the game. It can be either a human player or a computer player.
+ * Each player has a symbol and can choose a spot on the board to place their symbol.
+ * The Player class also provides a method to retrieve the player's symbol.
+ * 
+ * Player.java
+ * 
+ * Casey Barajas
+ * 02/16/2024
+ * 
+ */
+
 import java.util.Scanner;
 
 public class Player {
@@ -17,7 +29,7 @@ public class Player {
                 System.out.println("Choose a spot (1-9): ");
                 while (!scanner.hasNextInt()) {
                     System.out.println("That's not a number. Please enter a number between 1 and 9: ");
-                    scanner.next(); // this is important!
+                    scanner.next(); // this is FUCKING important!
                 }
                 choice = scanner.nextInt();
             } while (choice < 1 || choice > 9 || !board.setSymbol(choice, symbol));

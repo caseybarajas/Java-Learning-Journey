@@ -1,3 +1,14 @@
+/*
+ * The Board class represents a Tic-Tac-Toe game board.
+ * It provides methods for setting symbols, printing the board, and checking for a win or tie.
+ * 
+ * Board.java
+ * 
+ * Casey Barajas
+ * 02/16/2024
+ * 
+ */
+
 public class Board {
     private char[][] board;
     private final int size = 3; // TicTacToe board size

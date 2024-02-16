@@ -1,3 +1,13 @@
+/*
+ * The Game class represents a game of Tic-Tac-Toe.
+ * It allows two players to play against each other or against a computer opponent.
+ * The game keeps track of the number of wins for each player and ties.
+ * 
+ * Casey Barajas
+ * 02/16/2024
+ * 
+ */
+
 import java.util.Scanner;
 
 public class Game {
