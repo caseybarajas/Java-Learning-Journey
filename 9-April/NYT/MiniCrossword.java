@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class MiniCrossword extends BaseGame {
 
@@ -10,6 +11,10 @@ public class MiniCrossword extends BaseGame {
     private long startTime;
     private long endTime;
     private int guessesRemaining;
+    // ANSI escape codes for colors
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
 
     public MiniCrossword() {
         super("Mini Crossword");
@@ -51,31 +56,39 @@ public class MiniCrossword extends BaseGame {
         displayClues();
         Scanner scanner = new Scanner(System.in);
         while (!isGridFilled()) {
-            System.out.print("Enter the row (1-5): ");
-            int row = scanner.nextInt() - 1;
-            System.out.print("Enter the column (1-5): ");
-            int col = scanner.nextInt() - 1;
-            if (isValidCell(row, col)) {
-                guessesRemaining = MAX_GUESSES;
-                char correctLetter = getCorrectLetter(row, col);
-                while (guessesRemaining > 0) {
-                    System.out.print("Enter the letter (Guesses remaining: " + guessesRemaining + "): ");
-                    char letter = scanner.next().charAt(0);
-                    if (Character.toUpperCase(letter) == correctLetter) {
-                        grid[row][col] = correctLetter;
-                        displayGrid();
-                        displayRemainingTime();
-                        break;
-                    } else {
-                        guessesRemaining--;
-                        System.out.println("Incorrect letter. Try again.");
+            System.out.println("1. Show hints");
+            System.out.println("2. Solve");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            if (choice == 1) {
+                showHint();
+            } else if (choice == 2) {
+                System.out.print("Enter the row (1-5): ");
+                int row = scanner.nextInt() - 1;
+                System.out.print("Enter the column (1-5): ");
+                int col = scanner.nextInt() - 1;
+                if (isValidCell(row, col)) {
+                    guessesRemaining = MAX_GUESSES;
+                    char correctLetter = getCorrectLetter(row, col);
+                    while (guessesRemaining > 0) {
+                        System.out.print("Enter the letter (Guesses remaining: " + guessesRemaining + "): ");
+                        char letter = scanner.next().charAt(0);
+                        if (Character.toUpperCase(letter) == correctLetter) {
+                            grid[row][col] = correctLetter;
+                            displayGrid();
+                            displayRemainingTime();
+                            break;
+                        } else {
+                            guessesRemaining--;
+                            System.out.println("Incorrect letter. Try again.");
+                        }
                     }
+                    if (guessesRemaining == 0) {
+                        System.out.println("No more guesses remaining. Moving on to the next cell.");
+                    }
+                } else {
+                    System.out.println("Invalid cell. Please try again.");
                 }
-                if (guessesRemaining == 0) {
-                    System.out.println("No more guesses remaining. Moving on to the next cell.");
-                }
-            } else {
-                System.out.println("Invalid cell. Please try again.");
             }
         }
         endTime = System.currentTimeMillis();
@@ -91,13 +104,21 @@ public class MiniCrossword extends BaseGame {
         }
     }
 
+    private void showHint() {
+            displayClues();
+    }
+
     private void displayGrid() {
         System.out.println("Mini Crossword Grid:");
         System.out.println("  1 2 3 4 5");
         for (int row = 0; row < SIZE; row++) {
             System.out.print((row + 1) + " ");
             for (int col = 0; col < SIZE; col++) {
-                System.out.print(grid[row][col] + " ");
+                if (grid[row][col] == ' ') {
+                    System.out.print(ANSI_RED + grid[row][col] + ANSI_RESET + " ");
+                } else {
+                    System.out.print(ANSI_GREEN + grid[row][col] + ANSI_RESET + " ");
+                }
             }
             System.out.println();
         }
