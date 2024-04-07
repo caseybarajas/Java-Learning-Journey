@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class MiniCrossword extends BaseGame {
+
     private static final int SIZE = 5;
     private static final int MAX_GUESSES = 5;
     private char[][] grid;
@@ -24,24 +25,23 @@ public class MiniCrossword extends BaseGame {
                 grid[row][col] = ' ';
             }
         }
+
     }
 
     private void initializeClues() {
-        // Initialize the across clues
         acrossClues = new String[5];
-        acrossClues[0] = "1. Frozen dwelling";
-        acrossClues[1] = "2. Large feline";
-        acrossClues[2] = "3. Citrus fruit";
-        acrossClues[3] = "4. Stringed instrument";
-        acrossClues[4] = "5. Precious stone";
+        acrossClues[0] = "1. Fluffs up";
+        acrossClues[1] = "2. Fruit with a core";
+        acrossClues[2] = "3. Tie again";
+        acrossClues[3] = "4. Halloween prank";
+        acrossClues[4] = "5. Pulls hard";
 
-        // Initialize the down clues
         downClues = new String[5];
-        downClues[0] = "1. Elephant tusk material";
-        downClues[1] = "2. West African country";
-        downClues[2] = "3. Metric unit of volume";
-        downClues[3] = "4. Chinese tea variety";
-        downClues[4] = "5. Breakfast cereal grain";
+        downClues[0] = "1. Celebration";
+        downClues[1] = "2. Musical drama";
+        downClues[2] = "3. Agree to join";
+        downClues[3] = "4. Quick, light blow";
+        downClues[4] = "5. Searches for";
     }
 
     @Override
@@ -49,23 +49,18 @@ public class MiniCrossword extends BaseGame {
         startTime = System.currentTimeMillis();
         displayGrid();
         displayClues();
-
         Scanner scanner = new Scanner(System.in);
-
         while (!isGridFilled()) {
             System.out.print("Enter the row (1-5): ");
             int row = scanner.nextInt() - 1;
             System.out.print("Enter the column (1-5): ");
             int col = scanner.nextInt() - 1;
-
             if (isValidCell(row, col)) {
                 guessesRemaining = MAX_GUESSES;
                 char correctLetter = getCorrectLetter(row, col);
-
                 while (guessesRemaining > 0) {
                     System.out.print("Enter the letter (Guesses remaining: " + guessesRemaining + "): ");
                     char letter = scanner.next().charAt(0);
-
                     if (Character.toUpperCase(letter) == correctLetter) {
                         grid[row][col] = correctLetter;
                         displayGrid();
@@ -76,7 +71,6 @@ public class MiniCrossword extends BaseGame {
                         System.out.println("Incorrect letter. Try again.");
                     }
                 }
-
                 if (guessesRemaining == 0) {
                     System.out.println("No more guesses remaining. Moving on to the next cell.");
                 }
@@ -84,10 +78,8 @@ public class MiniCrossword extends BaseGame {
                 System.out.println("Invalid cell. Please try again.");
             }
         }
-
         endTime = System.currentTimeMillis();
         long elapsedTime = (endTime - startTime) / 1000; // Convert to seconds
-
         if (checkSolution()) {
             System.out.println("Congratulations! You solved the mini crossword.");
             System.out.println("Time taken: " + elapsedTime + " seconds");
@@ -118,7 +110,6 @@ public class MiniCrossword extends BaseGame {
             System.out.println(acrossClues[i]);
         }
         System.out.println();
-
         System.out.println("Down Clues:");
         for (int i = 0; i < downClues.length; i++) {
             System.out.println(downClues[i]);
@@ -149,63 +140,112 @@ public class MiniCrossword extends BaseGame {
     }
 
     private boolean checkSolution() {
-        // Check the words in the grid against the correct answers
-        String[] acrossAnswers = {"IGLOO", "TIGER", "LEMON", "VIOLA", "PEARL"};
-        String[] downAnswers = {"IVORY", "GHANA", "LITER", "OOLONG", "OATS"};
-
-        // Check the across words
+        String[] acrossAnswers = {"POOFS", "APPLE", "RETIE", "TRICK", "YANKS"};
+        String[] downAnswers = {"PARTY", "OPERA", "OPTIN", "FLICK", "SEEKS"};
         for (int i = 0; i < acrossAnswers.length; i++) {
             String word = getWord(i, true);
             if (!word.equals(acrossAnswers[i])) {
                 return false;
             }
         }
-
-        // Check the down words
         for (int i = 0; i < downAnswers.length; i++) {
             String word = getWord(i, false);
             if (!word.equals(downAnswers[i])) {
                 return false;
             }
         }
-
         return true;
     }
 
     private char getCorrectLetter(int row, int col) {
-        String[] acrossAnswers = {"IGLOO", "TIGER", "LEMON", "VIOLA", "PEARL"};
-        String[] downAnswers = {"IVORY", "GHANA", "LITER", "OOLONG", "OATS"};
+        String[] acrossAnswers = {"POOFS", "APPLE", "RETIE", "TRICK", "YANKS"};
+        String[] downAnswers = {"PARTY", "OPERA", "OPTIN", "FLICK", "SEEKS"};
 
-        // Check if the letter belongs to an across word
-        for (int i = 0; i < acrossAnswers.length; i++) {
-            if (row == i && col < SIZE) {
-                return acrossAnswers[i].charAt(col);
-            }
+        // Check the across and down answers for the correct letter
+        char correctLetter = ' ';
+        if (row < acrossAnswers.length && col < acrossAnswers[row].length()) {
+            correctLetter = acrossAnswers[row].charAt(col);
+        } else if (col < downAnswers.length && row < downAnswers[col].length()) {
+            correctLetter = downAnswers[col].charAt(row);
         }
 
-        // Check if the letter belongs to a down word
-        for (int i = 0; i < downAnswers.length; i++) {
-            if (col == i && row < SIZE) {
-                return downAnswers[i].charAt(row);
-            }
-        }
-
-        return ' ';
+        return correctLetter;
     }
 
     private String getWord(int index, boolean isAcross) {
+        // Only decrement index if it's greater than 0
+        if (index > 0) {
+            index--;  // Convert to 0-based index
+        }
+    
         if (isAcross) {
+            int row = getRowForAcrossWord(index);
+            int startCol = getColForAcrossWord(index);
+            int length = getAcrossAnswers()[index].length();
             StringBuilder word = new StringBuilder();
-            for (int col = 0; col < SIZE; col++) {
-                word.append(grid[index][col]);
+            for (int col = startCol; col < startCol + length; col++) {
+                word.append(grid[row][col]);
             }
             return word.toString();
         } else {
+            int col = getColForDownWord(index);
+            int startRow = getRowForDownWord(index);
+            int length = getDownAnswers()[index].length();
             StringBuilder word = new StringBuilder();
-            for (int row = 0; row < SIZE; row++) {
-                word.append(grid[row][index]);
+            for (int row = startRow; row < startRow + length; row++) {
+                word.append(grid[row][col]);
             }
             return word.toString();
         }
+    }
+
+    private int getRowForAcrossWord(int index) {
+        switch (index) {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 3;
+            case 4:
+                return 4;
+            default:
+                return -1;
+        }
+    }
+
+    private int getColForAcrossWord(int index) {
+        return index;
+    }
+
+    private int getRowForDownWord(int index) {
+        return index;
+    }
+
+    private int getColForDownWord(int index) {
+        switch (index) {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 3;
+            case 4:
+                return 4;
+            default:
+                return -1;
+        }
+    }
+
+    private String[] getAcrossAnswers() {
+        return new String[]{"POOFS", "APPLE", "RETIE", "TRICK", "YANKS"};
+    }
+
+    private String[] getDownAnswers() {
+        return new String[]{"PARTY", "OPERA", "OPTIN", "FLICK", "SEEKS"};
     }
 }
