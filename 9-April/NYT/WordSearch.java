@@ -8,9 +8,10 @@ public class WordSearch extends BaseGame {
     private char[][] grid;
     private List<String> words;
     private List<String> foundWords;
+    private Random random = new Random();
 
     public WordSearch() {
-        super("Word Search");
+        super("Word Search"); // Call the super class constructor with the game name
         grid = new char[SIZE][SIZE];
         words = new ArrayList<>();
         foundWords = new ArrayList<>();
@@ -19,28 +20,25 @@ public class WordSearch extends BaseGame {
     }
 
     private void initializeWords() {
-        words.add("apple");
-        words.add("banana");
-        words.add("cherry");
-        words.add("date");
-        words.add("elderberry");
-        words.add("fig");
-        words.add("grape");
-        words.add("honeydew");
-        words.add("kiwi");
-        words.add("lemon");
+        words.add("ILOVEYOU");
+        words.add("CodeRed");
+        words.add("Stuxnet");
+        words.add("Mydoom");
+        words.add("Conficker");
+        words.add("Sobig");
+        words.add("Blaster");
+        words.add("Sasser");
+        words.add("Zeus");
+        words.add("Slammer");
     }
 
     private void initializeGrid() {
-        // Fill the grid with random letters
-        Random random = new Random();
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 grid[row][col] = (char) (random.nextInt(26) + 'A');
             }
         }
 
-        // Place the words in the grid
         for (String word : words) {
             boolean placed = false;
             while (!placed) {
@@ -61,14 +59,14 @@ public class WordSearch extends BaseGame {
         int dr = 0, dc = 0;
 
         switch (direction) {
-            case 0: dr = -1; dc = -1; break;  // ↖
-            case 1: dr = -1; dc = 0; break;   // ↑
-            case 2: dr = -1; dc = 1; break;   // ↗
-            case 3: dr = 0; dc = -1; break;   // ←
-            case 4: dr = 0; dc = 1; break;    // →
-            case 5: dr = 1; dc = -1; break;   // ↙
-            case 6: dr = 1; dc = 0; break;    // ↓
-            case 7: dr = 1; dc = 1; break;    // ↘
+            case 0: dr = -1; dc = -1; break;
+            case 1: dr = -1; dc = 0; break;
+            case 2: dr = -1; dc = 1; break;
+            case 3: dr = 0; dc = -1; break;
+            case 4: dr = 0; dc = 1; break;
+            case 5: dr = 1; dc = -1; break;
+            case 6: dr = 1; dc = 0; break;
+            case 7: dr = 1; dc = 1; break;
         }
 
         int newRow = row + dr * (len - 1);
@@ -79,7 +77,7 @@ public class WordSearch extends BaseGame {
         }
 
         for (int i = 0; i < len; i++) {
-            if (grid[row + dr * i][col + dc * i] != word.charAt(i)) {
+            if (grid[row + dr * i][col + dc * i] != (char) (random.nextInt(26) + 'A')) {
                 return false;
             }
         }
@@ -92,14 +90,14 @@ public class WordSearch extends BaseGame {
         int dr = 0, dc = 0;
 
         switch (direction) {
-            case 0: dr = -1; dc = -1; break;  // ↖
-            case 1: dr = -1; dc = 0; break;   // ↑
-            case 2: dr = -1; dc = 1; break;   // ↗
-            case 3: dr = 0; dc = -1; break;   // ←
-            case 4: dr = 0; dc = 1; break;    // →
-            case 5: dr = 1; dc = -1; break;   // ↙
-            case 6: dr = 1; dc = 0; break;    // ↓
-            case 7: dr = 1; dc = 1; break;    // ↘
+            case 0: dr = -1; dc = -1; break;
+            case 1: dr = -1; dc = 0; break;
+            case 2: dr = -1; dc = 1; break;
+            case 3: dr = 0; dc = -1; break;
+            case 4: dr = 0; dc = 1; break;
+            case 5: dr = 1; dc = -1; break;
+            case 6: dr = 1; dc = 0; break;
+            case 7: dr = 1; dc = 1; break;
         }
 
         for (int i = 0; i < len; i++) {
@@ -112,7 +110,7 @@ public class WordSearch extends BaseGame {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Word Search!");
-        System.out.println("Find the hidden words in the grid.");
+        System.out.println("Find the hidden computer viruses in the grid.");
 
         while (foundWords.size() < words.size()) {
             displayGrid();
@@ -124,18 +122,18 @@ public class WordSearch extends BaseGame {
             System.out.println("3. Give up");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the word you found: ");
+                    System.out.print("Enter the virus you found: ");
                     String guess = scanner.nextLine();
                     if (words.contains(guess) && !foundWords.contains(guess)) {
                         foundWords.add(guess);
-                        System.out.println("Correct! Word found.");
+                        System.out.println("Correct! Virus found.");
                         score++;
                     } else {
-                        System.out.println("Invalid word. Try again.");
+                        System.out.println("Invalid virus. Try again.");
                     }
                     break;
                 case 2:
@@ -143,7 +141,7 @@ public class WordSearch extends BaseGame {
                     System.out.println("Hint: " + hint);
                     break;
                 case 3:
-                    System.out.println("Game over! Here are the remaining words:");
+                    System.out.println("Game over! Here are the remaining viruses:");
                     displayRemainingWords();
                     return;
                 default:
@@ -151,7 +149,7 @@ public class WordSearch extends BaseGame {
             }
         }
 
-        System.out.println("Congratulations! You found all the words.");
+        System.out.println("Congratulations! You found all the viruses.");
         displayGrid();
         displayFoundWords();
     }
@@ -168,7 +166,7 @@ public class WordSearch extends BaseGame {
     }
 
     private void displayFoundWords() {
-        System.out.println("Found Words:");
+        System.out.println("Found Viruses:");
         for (String word : foundWords) {
             System.out.println("- " + word);
         }
@@ -178,7 +176,7 @@ public class WordSearch extends BaseGame {
     private String getHint() {
         for (String word : words) {
             if (!foundWords.contains(word)) {
-                return "The word starts with the letter: " + word.charAt(0);
+                return "The virus starts with the letter: " + word.charAt(0);
             }
         }
         return "No more hints available.";
