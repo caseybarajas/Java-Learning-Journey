@@ -17,6 +17,7 @@ public class WordSearch extends BaseGame {
         foundWords = new ArrayList<>();
         initializeWords();
         initializeGrid();
+        System.out.println("DEBUG: Word Search game initialized.");
     }
 
     private void initializeWords() {
@@ -39,17 +40,24 @@ public class WordSearch extends BaseGame {
             }
         }
 
+        System.out.println("DEBUG: Grid initialized with random letters.");
+
         for (String word : words) {
             boolean placed = false;
-            while (!placed) {
-                int direction = random.nextInt(8);
-                int row = random.nextInt(SIZE);
-                int col = random.nextInt(SIZE);
+            int attempts = 0; // Add a counter for attempts
+            while (!placed && attempts < 1000) { // Limit the number of attempts
+            int direction = random.nextInt(8);
+            int row = random.nextInt(SIZE);
+            int col = random.nextInt(SIZE);
 
-                if (canPlaceWord(word, row, col, direction)) {
-                    placeWord(word, row, col, direction);
-                    placed = true;
-                }
+            if (canPlaceWord(word, row, col, direction)) {
+                placeWord(word, row, col, direction);
+                placed = true;
+            }
+            attempts++; // Increment the attempts counter
+            }
+            if (attempts == 1000) {
+            System.out.println("Unable to place word: " + word);
             }
         }
     }
