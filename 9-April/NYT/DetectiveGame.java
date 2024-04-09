@@ -9,6 +9,7 @@ public class DetectiveGame extends BaseGame {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
 
     public DetectiveGame() {
         super("DetectiveGame");
@@ -28,6 +29,10 @@ public class DetectiveGame extends BaseGame {
         System.out.println(ANSI_GREEN + "1. Visit the crime scene in Central Park" + ANSI_RESET);
         System.out.println(ANSI_YELLOW + "2. Go to the victim's home" + ANSI_RESET);
         System.out.println(ANSI_RED + "3. Visit the local police station" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "4. Go investiage on your own" + ANSI_RESET);
+        System.out.println("5. Go get coffee first");
+        System.out.println("6. Go get food");
+
 
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume leftover newline character
@@ -41,6 +46,15 @@ public class DetectiveGame extends BaseGame {
                 break;
             case 3:
                 visitPoliceStation();
+                break;
+            case 4:
+                goRouge();
+                break;
+            case 5:
+                goGetCoffee();
+                break;
+            case 6:
+                goGetFood();
                 break;
             default:
                 System.out.println("Invalid option. Please choose a valid option.");
@@ -339,4 +353,171 @@ public class DetectiveGame extends BaseGame {
         }
     }
 
+    private void goRouge() {
+        System.out.println("You decide to go rouge and investigate the case on your own. \n");
+        System.out.println("You find a" + ANSI_YELLOW + " secret passage" + ANSI_RESET + " in the crime scene that leads to an underground hideout. \n");
+        System.out.println("You find a" + ANSI_YELLOW + " secret room" + ANSI_RESET + " with a" + ANSI_YELLOW + " hidden safe" + ANSI_RESET + " inside. \n");
+        System.out.println("What would you like to do next? \n");
+
+        System.out.println("1. Open the safe");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); //consume leftover newline character
+
+        switch (choice) {
+            case 1:
+                openSafe();
+                break;
+            default:
+                System.out.println("Invalid option. Please choose a valid option.");
+                break;
+        }
+    }
+
+    private void openSafe() {
+        System.out.println("You open the safe and find a" + ANSI_YELLOW + " letter" + ANSI_RESET + " inside. \n");
+        System.out.println("The letter is addressed to" + ANSI_YELLOW + " 'Holland Virbrainium'." + ANSI_RESET + " It says that the chief of police was involved in a ploy to kill him. \n");
+        System.out.println("What would you like to do next? \n");
+
+        System.out.println("1. Show the letter to the other officers");
+        System.out.println("2. Leave the hideout");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); //consume leftover newline character
+
+        switch (choice) {
+            case 1:
+                showLetter();
+                break;
+            case 2:
+                leaveHideout();
+                break;
+            default:
+                System.out.println("Invalid option. Please choose a valid option.");
+                break;
+        }
+    }
+
+    private void leaveHideout() {
+        System.out.println("You leave the hideout and decide to show the letter to the other officers. \n");
+        System.out.println("The officers are shocked to see the contents of the letter. \n");
+        System.out.println("The officers decide to" + ANSI_GREEN + " arrest the chief's accomplices" + ANSI_RESET + " and" + ANSI_GREEN + " reopen the case" + ANSI_RESET + " of Holland Virbrainium. \n");
+        System.out.println("Congratulations, Detective " + detectiveName + "! You have solved the case and brought the criminals to justice. - good ending \n");
+        System.exit(0);
+    }
+
+    private void goGetCoffee() {
+        System.out.println("You decide to go get coffee first before starting your investigation. \n");
+        System.out.println("What kind of coffee would you like? \n");
+
+        System.out.println("1. Black coffee");
+        System.out.println("2. Latte");
+        System.out.println("3. Cappuccino");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); //consume leftover newline character
+
+        switch (choice) {
+            case 1:
+                drinkCoffee();
+                break;
+            case 2:
+                drinkCoffee();
+                break;
+            case 3:
+                drinkCoffee();
+                break;
+            default:
+                System.out.println("Invalid option. Please choose a valid option.");
+                break;
+        }
+    }
+
+    private void drinkCoffee() {
+        System.out.println("You drink your coffee and feel refreshed. \n");
+        System.out.println("What would you like to do next? \n");
+
+        System.out.println("1. Go pay for your coffee and start your investigation");
+        System.out.println("2. Go get more coffee");
+        System.out.println("3. Walk out without paying");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); //consume leftover newline character
+
+        switch (choice) {
+            case 1:
+                visitCrimeScene();
+                break;
+            case 2:
+                drinkCoffee();
+                break;
+            case 3:
+                noPay();
+                break;
+            default:
+                System.out.println("Invalid option. Please choose a valid option.");
+                break;
+        }
+    }
+
+    private void noPay() {
+        System.out.println("You walk out without paying for your coffee. \n");
+        System.out.println("A bystander pulls out a gun and shoots you in the knee, rendering you handicapped for life \n");
+        System.out.println("You are thrown in jail and the case remains unsolved. - thief ending \n");
+        System.exit(0);
+    }
+
+    private void goGetFood() {
+        System.out.println("You decide to go get food first before starting your investigation. \n");
+        System.out.println("What kind of food would you like? \n");
+
+        System.out.println("1. Pizza Hut");
+        System.out.println("2. Burger King");
+        System.out.println("3. McDonald's");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); //consume leftover newline character
+
+        switch (choice) {
+            case 1:
+                eatFood();
+                break;
+            case 2:
+                eatFood();
+                break;
+            case 3:
+                eatFood();
+                break;
+            default:
+                System.out.println("Invalid option. Please choose a valid option.");
+                break;
+        }
+    }
+
+    private void eatFood() {
+        System.out.println("You eat your food and feel satisfied. \n");
+        System.out.println("What would you like to do next? \n");
+
+        System.out.println("1. Go pay for your food and start your investigation");
+        System.out.println("2. Go get more food");
+        System.out.println("3. Walk out without paying");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); //consume leftover newline character
+
+        switch (choice) {
+            case 1:
+                visitCrimeScene();
+                break;
+            case 2:
+                eatFood();
+                break;
+            case 3:
+                noPay();
+                break;
+            default:
+                System.out.println("Invalid option. Please choose a valid option.");
+                break;
+        }
+    }
 }
