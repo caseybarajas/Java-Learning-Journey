@@ -35,4 +35,4 @@ While this repository is primarily for my personal learning, any suggestions, fe
 
 This project is open-source and available under the MIT License.
 
-Made with ❤️ by Casey Barajas
+Made with ❤️ by KC
