@@ -1,8 +1,6 @@
 # Java Learning Journey 🚀
 
-Welcome to my Java Learning Journey! This repository contains all my in-class notes and homework assignments as I embark on the exciting path of learning Java.
-
-![Java Logo](https://logo.clearbit.com/oracle.com) 
+Welcome to my Java Learning Journey! This repository contains all my in-class notes and homework assignments for AP-CSA.
 
 ## Setup and Run 🛠️
 
@@ -14,7 +12,7 @@ Welcome to my Java Learning Journey! This repository contains all my in-class no
 
      bash
 
-       git clone https://github.com/Laughable33/Java-Course.git
+       git clone https://github.com/caseybarajas33/Java-Course.git
 
 3. Navigate to the directory:
 
