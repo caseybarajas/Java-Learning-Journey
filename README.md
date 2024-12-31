@@ -12,7 +12,7 @@ Welcome to my Java Learning Journey! This repository contains all my in-class no
 
      bash
 
-       git clone https://github.com/caseybarajas33/Java-Course.git
+       git clone https://github.com/caseybarajas/Java-Course.git
 
 3. Navigate to the directory:
 
